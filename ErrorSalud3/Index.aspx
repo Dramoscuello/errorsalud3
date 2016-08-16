@@ -29,7 +29,7 @@
             <asp:BoundField DataField="Registros Erroneos" HeaderText="Registros Erroneos" ReadOnly="True" SortExpression="CompanyName" ControlStyle-Width="300px" />
                         <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="200px">
         <ItemTemplate>
-            <asp:Button ID="btnDescarga" runat="server" Text="Descargar Reporte" CssClass="btn btn-success" CommandName="Edit" />
+            <asp:Button ID="btnDescarga" runat="server" Text="Descargar Reporte" CssClass="btn btn-success" CommandName="Edit" OnClick="btnDescarga_Click"/>
 
         </ItemTemplate>
     </asp:TemplateField>

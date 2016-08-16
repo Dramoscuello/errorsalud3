@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-08-2016 a las 18:45:18
+-- Tiempo de generación: 16-08-2016 a las 21:04:36
 -- Versión del servidor: 5.7.9
 -- Versión de PHP: 5.6.16
 
@@ -72,6 +72,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_identificaciovacia` ()  begin
 	insert into datosusuerrores(td_, ni_, papellido_, sapellido_, pnombre_, snombre_, error_) select distinct td_t, ni_t, papellido_t, sapellido_t, pnombre_t, snombre_t, 'Error, campo identificacion vacio' from datosusutext where ni_t is null;
 end$$
 
+DROP PROCEDURE IF EXISTS `PA_insertarfichero`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_insertarfichero` (IN `nm` VARCHAR(100))  BEGIN
+	INSERT INTO fichero (name) VALUES(nm);
+END$$
+
 DROP PROCEDURE IF EXISTS `PA_logitudmax`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_logitudmax` ()  begin
 	insert into datosusuerrores(td_, ni_, papellido_, sapellido_, pnombre_, snombre_, error_) select distinct td_t, ni_t, papellido_t, sapellido_t, pnombre_t, snombre_t, 'Error, campos sobrepasan longitud permitida' from datosusutext where character_length(td_t)>2 or character_length(ni_t)>20 or character_length(cea_t)>6 or character_length(tu_t)>1 or character_length(papellido_t)>30 or character_length(sapellido_t)>30 or character_length(pnombre_t)>20 or character_length(snombre_t)>20 or character_length(edad_t)>3 or character_length(ume_t)>1 or character_length(sexo_t)>1 or character_length(cdr_t)>2 or character_length(cmr_t)>3 or character_length(zrh_t)>1;
@@ -122,10 +127,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_truncatedatosusutext` ()  BEGIN
 	TRUNCATE datosusutext;
 END$$
 
+DROP PROCEDURE IF EXISTS `PA_truncatefichero`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_truncatefichero` ()  BEGIN
+	TRUNCATE fichero;
+END$$
+
 DROP PROCEDURE IF EXISTS `PA_umenoexiste`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_umenoexiste` ()  begin
 	insert into datosusuerrores(td_, ni_, papellido_, sapellido_, pnombre_, snombre_, error_) select distinct td_t, ni_t, papellido_t, sapellido_t, pnombre_t, snombre_t, 'Error, unidad de medida de edad no existe' from datosusutext where ume_t<>1 and ume_t<>2 and ume_t<>3;
 end$$
+
+DROP PROCEDURE IF EXISTS `selectfichero`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectfichero` ()  BEGIN
+	SELECT * FROM fichero;
+END$$
 
 DELIMITER ;
 
@@ -217,6 +232,17 @@ CREATE TABLE IF NOT EXISTS `datosusutext` (
   `cdr_t` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
   `cmr_t` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
   `zrh_t` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `fichero`
+--
+
+DROP TABLE IF EXISTS `fichero`;
+CREATE TABLE IF NOT EXISTS `fichero` (
+  `name` varchar(100) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------

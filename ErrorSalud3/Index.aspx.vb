@@ -99,11 +99,11 @@ Public Class Index
 
 
     Private Sub GridView1_RowEditing(sender As Object, e As GridViewEditEventArgs) Handles GridView1.RowEditing
-        ExportExcel()
+
     End Sub
 
 
-    Protected Sub ExportExcel()
+    Public Sub ExportExcel()
         Using wb As New XLWorkbook()
             wb.Worksheets.Add(claseprocedure.tabla_Errores, "datosusuerrores")
             Response.Clear()
@@ -123,8 +123,10 @@ Public Class Index
 
     End Sub
 
-    Protected Sub GridView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles GridView1.SelectedIndexChanged
+    Protected Sub btnDescarga_Click(sender As Object, e As EventArgs)
         'claseprocedure.Truncatedatoserrores()
-        'claseprocedure.Truncatedatostext()
+        ' claseprocedure.Truncatedatostext()
+        'claseprocedure.Truncatefichero()
+        ExportExcel()
     End Sub
 End Class

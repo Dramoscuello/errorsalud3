@@ -224,6 +224,16 @@ Public Class Codprocedure
         cmd.ExecuteNonQuery()
         Conectar_.Close()
     End Sub
+    Public Sub Truncatefichero()
+        Dim Conectar_ As New MySqlConnection(conect.CrearConexion.ConnectionString)
+        Conectar_.Open()
+        Dim cmd As New MySqlCommand
+        cmd.Connection = Conectar_
+        cmd.CommandText = "PA_truncatefichero"
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.ExecuteNonQuery()
+        Conectar_.Close()
+    End Sub
 
     Private Sub Myobject(ByVal obj As Object)
         Marshal.ReleaseComObject(obj)
