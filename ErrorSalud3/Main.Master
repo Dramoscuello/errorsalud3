@@ -1,0 +1,28 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Main.master.vb" Inherits="ErrorSalud3.Main" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Validaciones salud</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="Content/bootstrap.css" rel="stylesheet"/>
+    <asp:ContentPlaceHolder ID="StyleSection" runat="server"></asp:ContentPlaceHolder>
+    
+</head>
+<body>
+   <form runat="server">
+        <div class="container">
+            <asp:ContentPlaceHolder ID="ContentSection" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </div>
+   
+        <script src="Scripts/bootstrap.js"></script>
+        <script src="Scripts/jquery-3.1.0.js"></script>
+        <asp:ContentPlaceHolder ID="ContentScripts" runat="server"></asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>
