@@ -15,7 +15,6 @@ c:\users\win10\documents\visual studio 2015\Projects\ErrorSalud3\ErrorSalud3\bin
 c:\users\win10\documents\visual studio 2015\Projects\ErrorSalud3\ErrorSalud3\bin\ErrorSalud3.pdb
 c:\users\win10\documents\visual studio 2015\Projects\ErrorSalud3\ErrorSalud3\bin\ErrorSalud3.xml
 c:\users\win10\documents\visual studio 2015\Projects\ErrorSalud3\ErrorSalud3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-c:\users\win10\documents\visual studio 2015\Projects\ErrorSalud3\ErrorSalud3\bin\MySql.Data.DLL
 c:\users\win10\documents\visual studio 2015\Projects\ErrorSalud3\ErrorSalud3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 c:\users\win10\documents\visual studio 2015\Projects\ErrorSalud3\ErrorSalud3\obj\Debug\ErrorSalud3.vbprojResolveAssemblyReference.cache
 c:\users\win10\documents\visual studio 2015\Projects\ErrorSalud3\ErrorSalud3\obj\Debug\ErrorSalud3.Resources.resources

@@ -51,6 +51,7 @@ Public Class Index
                 Conectar_.Open()
                 cmd.ExecuteNonQuery()
                 Conectar_.Close()
+                claseprocedure.insertar_fichero(path)
             ElseIf String.IsNullOrEmpty(path) Then
                 ClientScript.RegisterStartupScript(Me.GetType(), "alert", "alert('Debe seleccionar un archivo .txt');", True)
             End If
@@ -72,7 +73,9 @@ Public Class Index
         Dim llenar_grid_temp As New DataSet
         llenar_grid_temp = claseprocedure.Llenar
         Dim row As DataRow = dt.NewRow()
-        row("Nombre Archivo") = "Archivo"
+        Dim fi As String = claseprocedure.nombre_fichero()
+        Dim fich As String = Replace(fi, ".txt", ".xlsx")
+        row("Nombre Archivo") = fich
         row("Numero de Registros") = llenar_grid_temp.Tables(0).Rows(0).Item(0).ToString()
         row("Registros Erroneos") = llenar_grid_temp.Tables(0).Rows(0).Item(1).ToString()
         dt.Rows.Add(row)
@@ -106,8 +109,10 @@ Public Class Index
             Response.Clear()
             Response.Buffer = True
             Response.Charset = ""
+            Dim ex As String = claseprocedure.nombre_fichero()
+            Dim exc As String = Replace(ex, ".txt", ".xlsx")
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            Response.AddHeader("content-disposition", "attachment;filename=Errores_Archivo.xlsx")
+            Response.AddHeader("content-disposition", "attachment;filename=" + exc)
             Using MyMemoryStream As New MemoryStream()
                 wb.SaveAs(MyMemoryStream)
                 MyMemoryStream.WriteTo(Response.OutputStream)

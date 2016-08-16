@@ -7,6 +7,19 @@ Imports System.Runtime.InteropServices
 Public Class Codprocedure
     Dim conect As New Conexion
 
+    Public Function nombre_fichero() As String
+        Dim Conectar_ As New MySqlConnection(conect.CrearConexion.ConnectionString)
+        Conectar_.Open()
+        Dim cmd As New MySqlCommand
+        Dim fi As String
+        cmd.Connection = Conectar_
+        cmd.CommandText = "selectfichero"
+        cmd.CommandType = CommandType.StoredProcedure
+        fi = cmd.ExecuteScalar()
+        Conectar_.Close()
+        Return fi
+    End Function
+
     Public Sub Delete_tablas()
         Dim Conectar_ As New MySqlConnection(conect.CrearConexion.ConnectionString)
         Conectar_.Open()
@@ -24,6 +37,17 @@ Public Class Codprocedure
         cmd.Connection = Conectar_
         cmd.CommandText = "PA_ceros"
         cmd.CommandType = CommandType.StoredProcedure
+        cmd.ExecuteNonQuery()
+        Conectar_.Close()
+    End Sub
+    Public Sub insertar_fichero(nm As String)
+        Dim Conectar_ As New MySqlConnection(conect.CrearConexion.ConnectionString)
+        Conectar_.Open()
+        Dim cmd As New MySqlCommand
+        cmd.Connection = Conectar_
+        cmd.CommandText = "PA_insertarfichero"
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.Parameters.Add("nm", MySqlDbType.VarChar).Value = nm
         cmd.ExecuteNonQuery()
         Conectar_.Close()
     End Sub

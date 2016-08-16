@@ -79,7 +79,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -123,7 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\Codprocedure.vb" />
-    <Compile Include="Code\Conexion.vb" />
+    <Compile Include="Models\Conexion.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
