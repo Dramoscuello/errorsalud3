@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-08-2016 a las 21:04:36
+-- Tiempo de generación: 17-08-2016 a las 01:39:13
 -- Versión del servidor: 5.7.9
 -- Versión de PHP: 5.6.16
 
@@ -26,8 +26,9 @@ DELIMITER $$
 --
 DROP PROCEDURE IF EXISTS `Delete_tablas`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Delete_tablas` ()  BEGIN
-delete from datosusutext;
-  delete from  datosusuerrores;
+  TRUNCATE datosusutext;
+  TRUNCATE datosusuerrores;
+  TRUNCATE fichero;
 END$$
 
 DROP PROCEDURE IF EXISTS `Estado_Archivo`$$
@@ -117,21 +118,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_tipodocumentonoexiste` ()  begin
 	insert into datosusuerrores(td_, ni_, papellido_, sapellido_, pnombre_, snombre_, error_) select distinct td_t, ni_t, papellido_t, sapellido_t, pnombre_t, snombre_t, 'Error, tipo de documento no existe' from datosusutext where td_t<>'CC' and td_t<>'TI' and td_t<>'CE' and td_t<>'PA' and td_t<>'RC' and td_t<>'AS' and td_t<>'MS' and td_t<>'MU';
 end$$
 
-DROP PROCEDURE IF EXISTS `PA_truncatedatosusuerrores`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_truncatedatosusuerrores` ()  BEGIN
-	TRUNCATE datosusuerrores;
-END$$
-
-DROP PROCEDURE IF EXISTS `PA_truncatedatosusutext`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_truncatedatosusutext` ()  BEGIN
-	TRUNCATE datosusutext;
-END$$
-
-DROP PROCEDURE IF EXISTS `PA_truncatefichero`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_truncatefichero` ()  BEGIN
-	TRUNCATE fichero;
-END$$
-
 DROP PROCEDURE IF EXISTS `PA_umenoexiste`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_umenoexiste` ()  begin
 	insert into datosusuerrores(td_, ni_, papellido_, sapellido_, pnombre_, snombre_, error_) select distinct td_t, ni_t, papellido_t, sapellido_t, pnombre_t, snombre_t, 'Error, unidad de medida de edad no existe' from datosusutext where ume_t<>1 and ume_t<>2 and ume_t<>3;
@@ -143,53 +129,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `selectfichero` ()  BEGIN
 END$$
 
 DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `datosusu`
---
-
-DROP TABLE IF EXISTS `datosusu`;
-CREATE TABLE IF NOT EXISTS `datosusu` (
-  `id` int(255) NOT NULL AUTO_INCREMENT,
-  `td` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `ni` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `cea` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `tu` int(255) DEFAULT NULL,
-  `papellido` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `sapellido` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `pnombre` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `snombre` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `edad` int(255) DEFAULT NULL,
-  `ume` int(255) DEFAULT NULL,
-  `sexo` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `cdr` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `cmr` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `zrh` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `datosusu`
---
-
-INSERT INTO `datosusu` (`id`, `td`, `ni`, `cea`, `tu`, `papellido`, `sapellido`, `pnombre`, `snombre`, `edad`, `ume`, `sexo`, `cdr`, `cmr`, `zrh`) VALUES
-(1, 'CC', '1560155', 'CCF015', 2, 'HIJO DE TAL', 'BALLESTERO', 'FELIX', 'TOMAS', 67, 1, 'M', '23', '417', 'R'),
-(2, 'CD', '1560097', 'CCF015', 2, 'MADERA', 'HERNANDEZ', 'MOISES', 'FRANCISCO', 91, 1, 'M', '23', '417', 'R'),
-(3, 'CC', NULL, 'CCF015', 2, 'HERNANDEZ', 'NARVAEZ', 'VIANOR', 'ANTONIO', 82, 1, 'M', '23', '417', 'R'),
-(4, 'CC', '1559847', 'CCF015', 2, 'RAMIREZ', 'BUFANTE', 'LAZARO', 'JOSE', 84, 1, 'M', '23', '417', 'R'),
-(5, 'CC', '1559847', 'CCF015', 2, 'SARMIENTO', 'GUERRA', 'PAULA', 'ANDREA', 25, 1, 'F', '23', '417', 'U'),
-(6, 'CC', '1558344', 'CCF015', 2, 'HERNANDEZ', 'BERROCAL', 'BARTOLOME', 'JOSE', 81, 1, 'M', '23', '417', 'R'),
-(7, 'CC', '1558503', 'CCF015', 2, NULL, 'OVIEDO', 'ALFONSO', 'ENRIQUE', 82, 1, 'M', '23', '417', 'U'),
-(8, 'CC', '1558546', 'CCF015', 2, 'CALAO', 'RAMOS', NULL, 'ANTONIO', 81, 1, 'M', '23', '417', 'U'),
-(9, 'TI', '918862', 'CCF015', 2, 'LOZANO', 'BOHORQUEZ', 'ROBERTO', 'ENRIQUE', 84, 1, 'M', '23', '417', 'R'),
-(10, 'CC', '1199329', 'CCF015', 2, 'MARTINEZ', 'MADERA', 'MARCOS', 'MANUEL', 15, 1, 'M', '23', '417', 'R'),
-(11, 'CC', '1573373', 'CCF015', 2, 'LLANES', 'ALVAREZ', 'MANUEL', 'DELOSANGELES', 88, 1, 'F', '23', '417', 'R'),
-(12, 'CC', '11165134', 'CCF015', 2, 'MARQUEZ', 'CUADRADO', 'ANA', 'MARIA', 40, 1, 'M', '23', '417', 'U'),
-(13, 'CC', '11165873', 'CCF015', 2, 'PALOMO', 'CUADRADO', 'ALBERT', 'LUIS', 35, 1, 'H', '23', '417', 'U'),
-(14, 'CC', '11165024', 'CCF015', 2, 'HERRERA', 'HERNANDEZ', 'JOSE', 'IGNACIO', 57, 6, 'M', '23', '417', 'U'),
-(15, 'CC', '15015048', 'CCF015', 2, 'ALTAMIRANDA', 'CUADRADO', 'LUIS', 'CARLOS', 68, 1, 'M', '23', '417777', 'U');
 
 -- --------------------------------------------------------
 

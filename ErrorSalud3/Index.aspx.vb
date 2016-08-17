@@ -89,7 +89,7 @@ Public Class Index
 
     'Response.Clear()
     'Response.AddHeader("Content-Disposition", "attachment;filename=data.xls")
-    'Response.ContentType = "application/vnd.ms-excel"
+    ' Response.ContentType = "application/vnd.ms-excel"
     'Dim sw As StringWriter = New StringWriter()
     'Dim htw As HtmlTextWriter = New HtmlTextWriter(sw)
     'GridView1.RenderControl(htw)
@@ -103,7 +103,7 @@ Public Class Index
     End Sub
 
 
-    Public Sub ExportExcel()
+    Protected Sub ExportExcel()
         Using wb As New XLWorkbook()
             wb.Worksheets.Add(claseprocedure.tabla_Errores, "datosusuerrores")
             Response.Clear()
@@ -124,9 +124,6 @@ Public Class Index
     End Sub
 
     Protected Sub btnDescarga_Click(sender As Object, e As EventArgs)
-        'claseprocedure.Truncatedatoserrores()
-        ' claseprocedure.Truncatedatostext()
-        'claseprocedure.Truncatefichero()
         ExportExcel()
     End Sub
 End Class
